@@ -1,3 +1,5 @@
+name: Node.js CI
+
 on:
   push:
     branches: [ "main" ]
@@ -14,6 +16,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -21,15 +24,15 @@ jobs:
     - name: Print current working directory
       run: pwd
 
-    - name: List files in the working directory
+    - name: List files in the root directory
       run: ls -R
+
+    - name: List files in node-project directory
+      run: ls -R ./node-project || echo "Directory ./node-project does not exist."
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./node-project/new_app
-
-    - name: Verify node-project directory
-      run: ls -R ./node-project
+      working-directory: ./node-project
 
     - name: Verify new_app directory
       run: ls -R ./node-project/new_app || echo "Directory ./node-project/new_app does not exist."
@@ -43,11 +46,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    permissions: 
-      contents: none
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
     - name: Download artifact from build job
