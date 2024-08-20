@@ -29,7 +29,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./node-project  # Correct working directory for npm install
+      working-directory: C:/node-project/new_app  # Correct working directory for npm install
 
     - name: Verify new_app directory
       run: ls -R ./node-project/new_app || echo "Directory ./node-project/new_app does not exist."
