@@ -24,15 +24,13 @@ jobs:
     - name: Print current working directory
       run: pwd
 
-    - name: List files in the root directory
+    - name: List files in the working directory
       run: ls -R
-
-    - name: List files in node-project directory
-      run: ls -R ./node-project || echo "Directory ./node-project does not exist."
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./node-project
+      # Remove the working-directory, assuming you are already in the correct directory
+      # working-directory: ./node-project
 
     - name: Verify new_app directory
       run: ls -R ./node-project/new_app || echo "Directory ./node-project/new_app does not exist."
