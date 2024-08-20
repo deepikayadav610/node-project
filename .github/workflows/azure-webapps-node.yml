@@ -26,7 +26,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./node-project
+      working-directory: ./node-project/new_app
 
     - name: Verify node-project directory
       run: ls -R ./node-project
