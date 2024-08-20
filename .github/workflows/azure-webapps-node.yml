@@ -7,7 +7,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: new_app
-  AZURE_WEBAPP_PACKAGE_PATH: './node-project/new_app'
+  AZURE_WEBAPP_PACKAGE_PATH: './new_app'
   NODE_VERSION: '18.18.0'
 
 permissions:
@@ -29,8 +29,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      # Remove the working-directory, assuming you are already in the correct directory
-      # working-directory: ./node-project
+      working-directory: ./node-project/new_app  # This is the directory where package.json exists
 
     - name: Verify new_app directory
       run: ls -R ./node-project/new_app || echo "Directory ./node-project/new_app does not exist."
