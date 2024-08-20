@@ -7,7 +7,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: new_app
-  AZURE_WEBAPP_PACKAGE_PATH: './new_app'
+  AZURE_WEBAPP_PACKAGE_PATH: './node-project/new_app'  # Ensure this points to the correct directory
   NODE_VERSION: '18.18.0'
 
 permissions:
@@ -29,7 +29,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./node-project/new_app  # This is the directory where package.json exists
+      working-directory: ./node-project  # Correct working directory for npm install
 
     - name: Verify new_app directory
       run: ls -R ./node-project/new_app || echo "Directory ./node-project/new_app does not exist."
@@ -38,7 +38,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: node-app
-        path: ./node-project/new_app
+        path: ./node-project/new_app  # Correct path to the new_app directory
 
   deploy:
     runs-on: ubuntu-latest
